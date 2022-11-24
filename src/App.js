@@ -9,7 +9,7 @@ function App() {
         </p>
         <code>
           Hello Everyone. My name is Duy Nghia
-          <p>I'm from VKU</p>
+          <p>I'm from VietNam</p>
         </code>
         <a
           className="App-link"
