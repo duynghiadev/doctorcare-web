@@ -1,32 +1,33 @@
 /*
  * General styles
  */
- body, html {
-    background-image: "#fff";
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-family: $fontmain;
-    font-size: $base-size - 2px;
-    height: 100vh;
-    overflow: hidden;
+body,
+html {
+  background-image: "#fff";
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: $fontmain;
+  font-size: $base-size - 2px;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .btn {
-    padding: 0;
-    border: none;
-    cursor: pointer;
-    font-weight: 700;
-    height: 30px;
-    line-height: 30px;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    i {
-      font-size: $base-size - 3px;
-    }
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  height: 30px;
+  line-height: 30px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  i {
+    font-size: $base-size - 3px;
+  }
 }
 
-.btn-edit, 
+.btn-edit,
 .btn-add,
 .btn-delete,
 .btn-assign {
@@ -59,7 +60,7 @@
 #password::-ms-input-placeholder {
   font-family: $fontmain; // EDGE 2
 }
-#password::placeholder { 
+#password::placeholder {
   font-family: $fontmain;
 }
 
