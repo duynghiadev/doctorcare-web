@@ -6,15 +6,12 @@ import logo from "../../assets/logo.svg";
 import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../utils";
 import { changeLanguageApp } from "../../store/actions";
-
 class HomeHeader extends Component {
   changeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language);
   };
-
   render() {
     let language = this.props.language;
-
     return (
       <React.Fragment>
         <div className="home-header-container">
@@ -156,7 +153,7 @@ class HomeHeader extends Component {
                   <i className="fas fa-user-md"></i>
                 </div>
                 <div className="text-child">
-                  S<FormattedMessage id="banner.child5" />
+                  <FormattedMessage id="banner.child5" />
                 </div>
               </div>
               <div className="option-child">
@@ -174,6 +171,7 @@ class HomeHeader extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
