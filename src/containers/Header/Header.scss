@@ -1,5 +1,4 @@
 @import "../../styles/common.scss";
-
 .header-container {
   z-index: 99;
   display: flex;
@@ -8,7 +7,6 @@
   color: $common-text-color;
   height: 40px;
   position: relative;
-
   .btn-logout {
     color: $common-text-color;
     line-height: 40px;
@@ -21,22 +19,22 @@
       font-size: $base-size + 1px;
     }
   }
-
   .languages {
-    .language-en {
-      margin-right: 15px;
-      margin-left: 15px;
-      cursor: pointer;
-
-      &.active {
-        opacity: 1;
-        color: rgb(32, 201, 122);
-      }
+    .welcome {
+      margin-right: 10px;
     }
 
+    .language-en {
+      margin-right: 15px;
+      margin-left: 10px;
+      cursor: pointer;
+      &.active {
+        opacity: 1;
+        color: #30d663;
+      }
+    }
     .language-vi {
       cursor: pointer;
-
       &.active {
         opacity: 1;
         color: orange;

@@ -6,6 +6,7 @@ import logo from "../../assets/logo.svg";
 import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../utils";
 import { changeLanguageApp } from "../../store/actions";
+
 class HomeHeader extends Component {
   changeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language);
@@ -171,11 +172,11 @@ class HomeHeader extends Component {
     );
   }
 }
-
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
     language: state.app.language,
+    userInfo: state.user.userInfo,
   };
 };
 
@@ -184,5 +185,4 @@ const mapDispatchToProps = (dispatch) => {
     changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
   };
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
