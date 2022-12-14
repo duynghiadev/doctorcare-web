@@ -20,7 +20,6 @@ class Header extends Component {
         <div className="header-tabs-container">
           <Navigator menus={adminMenu} />
         </div>
-
         <div className="languages">
           <span className="welcome">
             <FormattedMessage id="homeheader.welcome" />
@@ -55,6 +54,7 @@ class Header extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
@@ -70,4 +70,5 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actions.changeLanguageApp(language)),
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
