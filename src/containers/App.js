@@ -15,7 +15,6 @@ import System from "../routes/System";
 import { CustomToastCloseButton } from "../components/CustomToast";
 import HomePage from "./HomePage/HomePage.js";
 import CustomScrollbars from "../components/CustomScrollbars";
-
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -30,11 +29,9 @@ class App extends Component {
       }
     }
   };
-
   componentDidMount() {
     this.handlePersistorState();
   }
-
   render() {
     return (
       <Fragment>
@@ -56,7 +53,8 @@ class App extends Component {
                 </Switch>
               </CustomScrollbars>
             </div>
-            <ToastContainer
+
+            {/* <ToastContainer
               className="toast-container"
               toastClassName="toast-item"
               bodyClassName="toast-item-body"
@@ -67,6 +65,18 @@ class App extends Component {
               closeOnClick={false}
               draggable={false}
               closeButton={<CustomToastCloseButton />}
+            /> */}
+
+            <ToastContainer
+              position="bottom-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
             />
           </div>
         </Router>
@@ -74,16 +84,13 @@ class App extends Component {
     );
   }
 }
-
 const mapStateToProps = (state) => {
   return {
     started: state.app.started,
     isLoggedIn: state.user.isLoggedIn,
   };
 };
-
 const mapDispatchToProps = (dispatch) => {
   return {};
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(App);
