@@ -26,6 +26,11 @@
     background: #eceaea !important;
   }
 }
+
+.slick-disabled {
+  display: none !important;
+}
+
 .section-share {
   &.section-specialty {
     background: #f5f5f5;
@@ -108,7 +113,7 @@
   .section-customize {
     padding: 5px;
     .customize-border {
-      border: 1px solid orange;
+      // border: 1px solid orange;
       padding: 20px;
     }
   }
