@@ -3,7 +3,6 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./TableManageUser.scss";
 import * as actions from "../../../store/actions";
-
 class TableManageUser extends Component {
   constructor(props) {
     super(props);
@@ -11,11 +10,9 @@ class TableManageUser extends Component {
       usersRedux: [],
     };
   }
-
   componentDidMount() {
     this.props.fetchUserRedux();
   }
-
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.listUsers !== this.props.listUsers) {
       this.setState({
@@ -23,14 +20,15 @@ class TableManageUser extends Component {
       });
     }
   }
-
   handleDeleteUser = (user) => {
     this.props.deleteAUserRedux(user.id);
   };
 
+  handleEditUser = (user) => {
+    this.props.handleEditUserFromParentKey(user);
+  };
+
   render() {
-    console.log("hoidanit check all users: ", this.props.listUsers);
-    console.log("hoidanit check state: ", this.state.usersRedux);
     let arrUsers = this.state.usersRedux;
     return (
       <table id="TableManageUser">
@@ -58,7 +56,10 @@ class TableManageUser extends Component {
                   <td>{item.gender}</td>
                   <td>{item.roleId}</td>
                   <td>
-                    <button className="btn-edit">
+                    <button
+                      className="btn-edit"
+                      onClick={() => this.handleEditUser(item)}
+                    >
                       <i className="fas fa-pencil-alt"></i>
                     </button>
                     <button
@@ -76,18 +77,15 @@ class TableManageUser extends Component {
     );
   }
 }
-
 const mapStateToProps = (state) => {
   return {
     listUsers: state.admin.users,
   };
 };
-
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchUserRedux: () => dispatch(actions.fetchAllUsersStart()),
     deleteAUserRedux: (id) => dispatch(actions.deleteAUser(id)),
   };
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(TableManageUser);
