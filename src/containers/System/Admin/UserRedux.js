@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
-import { LANGUAGES, CRUD_ACTIONS } from "../../../utils";
+import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../utils";
 import * as actions from "../../../store/actions";
 import "./UserRedux.scss";
 import Lightbox from "react-image-lightbox";
@@ -26,12 +26,10 @@ class UserRedux extends Component {
       position: "",
       role: "",
       avatar: "",
-
       action: "",
       userEditId: "",
     };
   }
-
   async componentDidMount() {
     this.props.getGenderStart();
     this.props.getPositionStart();
@@ -50,10 +48,8 @@ class UserRedux extends Component {
         gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : "",
       });
     }
-
     if (prevProps.roleRedux !== this.props.roleRedux) {
       let arrRoles = this.props.roleRedux;
-
       this.setState({
         roleArr: this.props.roleRedux,
         role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : "",
@@ -67,12 +63,10 @@ class UserRedux extends Component {
           arrPositions && arrPositions.length > 0 ? arrPositions[0].key : "",
       });
     }
-
     if (prevProps.listUsers !== this.props.listUsers) {
       let arrGenders = this.props.genderRedux;
       let arrRoles = this.props.roleRedux;
       let arrPositions = this.props.positionRedux;
-
       this.setState({
         email: "",
         password: "",
@@ -86,17 +80,21 @@ class UserRedux extends Component {
           arrPositions && arrPositions.length > 0 ? arrPositions[0].key : "",
         avatar: "",
         action: CRUD_ACTIONS.CREATE,
+        previewImgURL: "",
       });
     }
   }
-  handleOnchangeImage = (event) => {
+
+  handleOnchangeImage = async (event) => {
     let data = event.target.files;
     let file = data[0];
     if (file) {
+      let base64 = await CommonUtils.getBase64(file);
+      console.log("hoidanit base64 image: ", base64);
       let objectUrl = URL.createObjectURL(file);
       this.setState({
         previewImgURL: objectUrl,
-        avatar: file,
+        avatar: base64,
       });
     }
   };
@@ -109,9 +107,7 @@ class UserRedux extends Component {
   handleSaveUse = () => {
     let isValid = this.checkValidateInput();
     if (isValid === false) return;
-
     let { action } = this.state;
-
     if (action === CRUD_ACTIONS.CREATE) {
       // fire redux action
       this.props.createNewUser({
@@ -124,6 +120,7 @@ class UserRedux extends Component {
         gender: this.state.gender,
         roleId: this.state.role,
         positionId: this.state.position,
+        avatar: this.state.avatar,
       });
     }
     if (action === CRUD_ACTIONS.EDIT) {
@@ -139,11 +136,10 @@ class UserRedux extends Component {
         gender: this.state.gender,
         roleId: this.state.role,
         positionId: this.state.position,
-        // avatar: this.state.avatar
+        avatar: this.state.avatar,
       });
     }
   };
-
   checkValidateInput = () => {
     let isValid = true;
     let arrCheck = [
@@ -172,7 +168,11 @@ class UserRedux extends Component {
   };
 
   handleEditUserFromParent = (user) => {
-    console.log("hoidanit check handle edit user from parent: ", user);
+    let imageBase64 = "";
+    if (user.image) {
+      imageBase64 = new Buffer(user.image, "base64").toString("binary");
+    }
+
     this.setState({
       email: user.email,
       password: "hashcode",
@@ -184,11 +184,11 @@ class UserRedux extends Component {
       role: user.roleId,
       position: user.positionId,
       avatar: "",
+      previewImgURL: imageBase64,
       action: CRUD_ACTIONS.EDIT,
       userEditId: user.id,
     });
   };
-
   render() {
     let genders = this.state.genderArr;
     let roles = this.state.roleArr;
@@ -453,7 +453,6 @@ const mapDispatchToProps = (dispatch) => {
     createNewUser: (data) => dispatch(actions.createNewUser(data)),
     fetchUserRedux: () => dispatch(actions.fetchAllUsersStart()),
     editAUserRedux: (data) => dispatch(actions.editAUser(data)),
-
     // processLogout: () => dispatch(actions.processLogout()),
     // changeLanguageAppRedux: (language) =>
     //   dispatch(actions.changeLanguageApp(language)),
