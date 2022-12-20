@@ -10,11 +10,13 @@
     background: #eceaea !important;
   }
 }
+
 .slick-prev:before,
 .slick-next:before {
   font-family: FontAwesome !important;
   color: red !important;
 }
+
 .slick-next {
   right: -10px !important;
   z-index: 1000 !important;
@@ -57,15 +59,18 @@
         &.section-specialty {
           background-image: url("../../assets/specialty/co-xuong-khop.jpg");
         }
+
         &.section-medical-facility {
           background-image: url("../../assets/medical-facility/benh-vien-thu-cuc.jpg");
         }
+
         &.section-outstanding-doctor {
           // background-image: url("../../assets/outstanding-doctor/anh-dai-dien-bs.jpg");
           width: 120px;
           height: 120px;
           border-radius: 50%;
         }
+
         &.section-handbook {
           background-image: url("../../assets/handbook/handbook.png");
         }
@@ -73,20 +78,25 @@
     }
   }
 }
+
 .section-share {
   height: 330px;
+
   .section-container {
     margin: 0 100px;
     display: flex;
     flex-direction: column;
+
     .section-header {
       height: 60px;
       margin-bottom: 30px;
       padding-top: 30px;
+
       .title-section {
         font-size: 22px;
         font-weight: 600;
       }
+
       .btn-section {
         float: right;
         display: block;
@@ -96,6 +106,7 @@
         background: #ebebeb;
         color: black;
         text-transform: uppercase;
+
         &:hover {
           color: #fff;
           background: #f7d800;
@@ -104,14 +115,18 @@
     }
   }
 }
+
 .section-outstanding-doctor {
   .outer-bg {
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
   }
+
   .section-customize {
     padding: 5px;
+    cursor: pointer;
+
     .customize-border {
       // border: 1px solid orange;
       padding: 20px;
