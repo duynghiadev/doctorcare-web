@@ -62,7 +62,7 @@ class ManageDoctor extends Component {
       if (type === "PRICE") {
         inputData.map((item, index) => {
           let object = {};
-          let labelVi = `${item.valueVi} VNĐ`;
+          let labelVi = `${item.valueVi} `;
           let labelEn = `${item.valueEn} USD`;
           object.label = language === LANGUAGES.VI ? labelVi : labelEn;
           object.value = item.keyMap;
