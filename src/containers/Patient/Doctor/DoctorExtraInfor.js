@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./DoctorExtraInfor.scss";
 import { LANGUAGES } from "../../../utils";
-import { getScheduleDoctorByDate } from "../../../services/userService";
-import { FormattedMessage } from "react-intl";
 import { getExtraInforDoctorById } from "../../../services/userService";
+import { FormattedMessage } from "react-intl";
 import NumberFormat from "react-number-format";
 
 class DoctorExtraInfor extends Component {
